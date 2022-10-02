@@ -8,23 +8,25 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/etBinary"
-        android:layout_width="match_parent"
+        android:id="@+id/clicksCounter"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:text="@string/click_times"
+        android:textSize="@dimen/text_size"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:hint="Binary"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
     <Button
-        android:id="@+id/btnCalculate"
+        android:id="@+id/increaseCounter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Calculate"
+        android:text="Click me!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etBinary" />
+        app:layout_constraintTop_toBottomOf="@+id/clicksCounter" />
 </androidx.constraintlayout.widget.ConstraintLayout>

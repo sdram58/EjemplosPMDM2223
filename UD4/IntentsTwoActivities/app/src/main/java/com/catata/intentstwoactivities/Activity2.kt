@@ -1,0 +1,55 @@
+package com.catata.intentstwoactivities
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.catata.intentstwoactivities.MainActivity.Companion.KEY_EXTRA_NAME
+import com.catata.intentstwoactivities.MainActivity.Companion.KEY_EXTRA_RESULT
+import com.catata.intentstwoactivities.MainActivity.Companion.KEY_EXTRA_SURNAME
+import com.catata.intentstwoactivities.databinding.Activity2Binding
+
+class Activity2 : AppCompatActivity() {
+    private lateinit var binding:Activity2Binding
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+      
+        setContentView(Activity2Binding.inflate(layoutInflater).also { binding = it }.root)
+
+
+        retrieveMainActivityData()
+
+        binding.btnBack.setOnClickListener {
+            sendBackName()
+        }
+        
+    }
+
+    private fun sendBackName() {
+        val text = binding.etName.text.toString()
+        val returnIntent = Intent().apply {
+            putExtra(KEY_EXTRA_RESULT, text)
+        }   //Creates a new Intent with editText content as an extra
+
+        if(text != "")
+            setResult(RESULT_OK, returnIntent) //The action went ok.
+        else
+            setResult(RESULT_CANCELED, returnIntent)
+
+        finish() //Finish and close this activity
+    }
+
+
+    //This function checks if there is any data on the intent and set it into the TextView
+    private fun retrieveMainActivityData() {
+        var name:String? = null
+
+        if(intent.hasExtra(KEY_EXTRA_NAME))
+            name = "${intent.getStringExtra(KEY_EXTRA_NAME).toString()}"
+
+        if(intent.hasExtra(KEY_EXTRA_SURNAME))
+            name = "${name?:""} ${intent.getStringExtra(KEY_EXTRA_SURNAME).toString()}"
+
+        binding.tvTop.text = name ?: "No user"
+    }
+}

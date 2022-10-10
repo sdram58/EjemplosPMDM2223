@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Activities</string>
     <string name="second_activity_title">Second Activity</string>
+    <string name="go">Go  to Activity 2</string>
+    <string name="back">Send Back</string>
+    <string name="hello_text">Hello %1$s !</string>
 </resources>

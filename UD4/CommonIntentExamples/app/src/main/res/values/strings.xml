@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">CommonIntentExamples</string>
+    <string name="dial">Dial a phone</string>
+    <string name="btn_alarm">Set an alarm</string>
+    <string name="btn_camera">Open camera</string>
+    <string name="btn_email">Write an email</string>
+    <string name="btn_note">Add a note</string>
+    <string name="btn_web_search">Web search</string>
+    <string name="btn_location">Show location</string>
+    <string name="btn_wifi_settings">Wifi Settings</string>
+    <string name="btn_text_message">New text message</string>
+    <string name="btn_web_browser">Open web browser</string>
+    <string name="btn_Event">Set Event</string>
+</resources>

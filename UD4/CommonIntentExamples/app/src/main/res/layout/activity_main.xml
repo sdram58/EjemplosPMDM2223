@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnDial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dial"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/btnAlarm"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btnAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_alarm"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/btnEvent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDial"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_Event"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/btnCamera"
+        app:layout_constraintTop_toBottomOf="@+id/btnAlarm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_camera"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/btnEmail"
+        app:layout_constraintTop_toBottomOf="@+id/btnEvent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_email"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/btnNewNote"
+        app:layout_constraintTop_toBottomOf="@+id/btnCamera"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnNewNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_note"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/btnWebSearch"
+        app:layout_constraintTop_toBottomOf="@+id/btnEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnWebSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_web_search"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/btnShowLocation"
+        app:layout_constraintTop_toBottomOf="@+id/btnNewNote"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnShowLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_location"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/btnWifiSettings"
+        app:layout_constraintTop_toBottomOf="@+id/btnWebSearch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnWifiSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_wifi_settings"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/btnTextMessage"
+        app:layout_constraintTop_toBottomOf="@+id/btnShowLocation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnTextMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_text_message"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/btnWebBrowser"
+        app:layout_constraintTop_toBottomOf="@+id/btnWifiSettings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnWebBrowser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_web_browser"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTextMessage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

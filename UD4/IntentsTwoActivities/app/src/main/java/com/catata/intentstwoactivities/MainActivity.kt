@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.catata.intentstwoactivities.databinding.ActivityMainBinding
+import com.catata.intentstwoactivities.model.Person
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         val KEY_EXTRA_NAME:String ="MY_KEY_EXTRA_NAME"
         val KEY_EXTRA_SURNAME:String ="MY_KEY_EXTRA_SURNAME"
         val KEY_EXTRA_RESULT:String ="MY_KEY_EXTRA_RESULTS"
+        val KEY_EXTRA_RESULT_PARCELABLE:String ="MY_KEY_EXTRA_RESULT_PARCELABLE"
     }
 
     var resultLauncher: ActivityResultLauncher<Intent> =
@@ -36,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         setContentView( ActivityMainBinding.inflate(layoutInflater).also { binding = it }.root)
 
         binding.btnGoActivity2.setOnClickListener {
-            openActivity2()
+            //openActivity2()
+            sendParcelablePerson()
         }
     }
 
@@ -49,5 +52,14 @@ class MainActivity : AppCompatActivity() {
 
         //startActivity(intent)
         resultLauncher.launch(intent)
+    }
+
+    private fun sendParcelablePerson() {
+        val person = Person("Carlos", "Tarazona")
+        val intent = Intent(this, Activity2::class.java).apply {
+            putExtra(KEY_EXTRA_RESULT_PARCELABLE, person)
+        }
+
+        startActivity(intent)
     }
 }

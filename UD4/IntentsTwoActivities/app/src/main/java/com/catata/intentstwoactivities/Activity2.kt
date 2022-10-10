@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.catata.intentstwoactivities.MainActivity.Companion.KEY_EXTRA_NAME
 import com.catata.intentstwoactivities.MainActivity.Companion.KEY_EXTRA_RESULT
+import com.catata.intentstwoactivities.MainActivity.Companion.KEY_EXTRA_RESULT_PARCELABLE
 import com.catata.intentstwoactivities.MainActivity.Companion.KEY_EXTRA_SURNAME
 import com.catata.intentstwoactivities.databinding.Activity2Binding
+import com.catata.intentstwoactivities.model.Person
 
 class Activity2 : AppCompatActivity() {
     private lateinit var binding:Activity2Binding
@@ -17,12 +19,26 @@ class Activity2 : AppCompatActivity() {
         setContentView(Activity2Binding.inflate(layoutInflater).also { binding = it }.root)
 
 
-        retrieveMainActivityData()
+        //retrieveMainActivityData()
+        getParcelableFromIntent()
 
         binding.btnBack.setOnClickListener {
             sendBackName()
         }
         
+    }
+
+    private fun getParcelableFromIntent() {
+        var myText:String? = null
+
+        if(intent.hasExtra(KEY_EXTRA_RESULT_PARCELABLE)){
+            val person = intent.getParcelableExtra<Person>(KEY_EXTRA_RESULT_PARCELABLE)
+            person.let{person ->
+                myText = "${person?.name} ${person?.surname}"
+            }
+        }
+
+        binding.tvTop.text = myText?:"No user"
     }
 
     private fun sendBackName() {

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SharedActivitiesCaller</string>
+    <string name="btn_go_text">Go next Activity</string>
+</resources>

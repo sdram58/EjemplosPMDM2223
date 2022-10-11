@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             btnNewNote.setOnClickListener {
-
+                createNote("New Note", "This is the body of the note")
             }
 
             btnWebSearch.setOnClickListener {
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             btnShowLocation.setOnClickListener {
-                showMap(Uri.parse("geo:0,0?q=39.4295152,-0.4660814(Treasure)"))
+                showMap(Uri.parse("geo:0,0?q=39.4295152,-0.4660814,15z(Treasure)"))
             }
 
             btnWifiSettings.setOnClickListener {

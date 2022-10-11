@@ -1,18 +1,22 @@
 package com.catata.commonintentexamples
 
+import android.Manifest
 import android.app.Activity
 import android.app.SearchManager
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.AlarmClock
 import android.provider.CalendarContract
 import android.provider.MediaStore
 import android.provider.Settings
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.catata.commonintentexamples.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -24,8 +28,18 @@ class MainActivity : AppCompatActivity() {
             // There are no request codes
             val data: Intent? = result.data
             val thumbnail: Bitmap?= data?.getParcelableExtra("data")
+            with(binding.ivCameraResult){
+                visibility = View.VISIBLE
+                setImageBitmap(thumbnail)
+            }
         }
     }
+
+    companion object{
+        val MY_CAMERA_PERMISSION_CODE = 10
+    }
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             btnEvent.setOnClickListener {
-                addEvent("New Event", "Torrent", 12354L, 12450)
+                addEvent("New Event", "Torrent", 1665483318974L, 1665683318974L)
             }
 
             btnCamera.setOnClickListener {
@@ -115,13 +129,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun capturePhoto(targetFilename: String) {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE).apply {
-            putExtra(MediaStore.EXTRA_OUTPUT, "$locationForPhotos$targetFilename")
+        //Check permission
+        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(Manifest.permission.CAMERA), MY_CAMERA_PERMISSION_CODE)
+        } else{
+
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            if (intent.resolveActivity(packageManager) != null) {
+
+
+                resultLauncher.launch(intent)
+            }
         }
 
-        if (intent.resolveActivity(packageManager) != null) {
-            resultLauncher.launch(intent)
-        }
+
+
     }
 
     fun composeEmail(addresses: Array<String>, subject: String, attachment: Uri) {

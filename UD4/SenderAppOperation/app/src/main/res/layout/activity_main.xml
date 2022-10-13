@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Num 1"
-        android:digits="0123456789"
+        android:digits="0123456789-."
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:hint="Num 1"
         android:inputType="numberDecimal"
-        android:digits="0123456789"
+        android:digits="0123456789-."
         android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@id/etNum2"
         >
         <RadioButton
-            android:id="@+id/rbSumOp"
+            android:id="@+id/rbAddOp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="35sp"
@@ -58,14 +58,14 @@
             android:textSize="35sp"
             android:text="-" />
         <RadioButton
-            android:id="@+id/rbSMultOp"
+            android:id="@+id/rbMultOp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:textSize="35sp"
             android:text="x" />
         <RadioButton
-            android:id="@+id/rbSDivOp"
+            android:id="@+id/rbDivOp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

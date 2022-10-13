@@ -9,7 +9,7 @@ const val EXTRA_OP_KEY = "EXTRA_OP_KEY"
 const val EXTRA_RESULT_KEY = "EXTRA_RESULT_KEY"
 const val EXTRA_PARCELABLE_KEY = "EXTRA_PARCELABLE_KEY"
 
-data class Model(val num1:Double,val num2:Double,val operation: Operation):Parcelable {
+data class Model(val num1:Double,val num2:Double,val operation: Operation): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readDouble(),
         parcel.readDouble(),
@@ -22,35 +22,9 @@ data class Model(val num1:Double,val num2:Double,val operation: Operation):Parce
         }) {
     }
 
-    enum class Operation(val symbol:String):Parcelable{
-
-        ADD("+"), SUBS("-"), MULT("x"), DIV("%");
-
-        constructor(parcel: Parcel) : this(values()[parcel.readInt()].symbol) {
-        }
-
-
-
-        override fun writeToParcel(parcel: Parcel, flags: Int) {
-            parcel.writeInt(ordinal)
-        }
-
-        override fun describeContents(): Int {
-            return 0
-        }
-
-        companion object CREATOR : Parcelable.Creator<Operation> {
-            override fun createFromParcel(parcel: Parcel): Operation {
-                return values()[ parcel.readInt()]
-            }
-
-            override fun newArray(size: Int): Array<Operation?> {
-                return arrayOfNulls(size)
-            }
-        }
+    enum class Operation(val symbol:String){
+        ADD("+"), SUBS("-"), MULT("x"), DIV("%")
     }
-
-
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeDouble(num1)
@@ -72,4 +46,3 @@ data class Model(val num1:Double,val num2:Double,val operation: Operation):Parce
         }
     }
 }
-

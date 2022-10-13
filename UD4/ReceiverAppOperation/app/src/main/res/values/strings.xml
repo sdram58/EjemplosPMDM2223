@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ReceiverAppOperation</string>
+    <string name="calculate_send_back">Calculate and Send Back</string>
+</resources>

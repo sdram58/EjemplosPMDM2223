@@ -7,21 +7,22 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.AlarmClock
 import android.provider.CalendarContract
 import android.provider.MediaStore
 import android.provider.Settings
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.catata.commonintentexamples.databinding.ActivityMainBinding
+import com.google.android.gms.actions.NoteIntents
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
-    val locationForPhotos: Uri by lazy{ Uri.fromFile(filesDir) }
 
     var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
@@ -159,13 +160,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun createNote(subject: String, text: String) {
-        /*val intent = Intent(NoteIntents.ACTION_CREATE_NOTE).apply {
+        val intent = Intent(NoteIntents.ACTION_CREATE_NOTE).apply {
             putExtra(NoteIntents.EXTRA_NAME, subject)
             putExtra(NoteIntents.EXTRA_TEXT, text)
         }
-        if (intent.resolveActivity(packageManager) != null) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
+            val i = Intent.createChooser(intent, "Select App")
+            startActivity(i)
+        }else if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
-        }*/
+        }else{
+            Toast.makeText(this, "No apps for notes found", Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun searchWeb(query: String) {

@@ -2,25 +2,25 @@ package com.catata.masterdetailexample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.FrameLayout
+import com.catata.masterdetailexample.databinding.ActivityMainBinding
+
 import com.catata.masterdetailexample.interfaces.OnItemClick
 import com.catata.masterdetailexample.model.Superhero
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), OnItemClick  {
-    private val layoutList: FrameLayout by lazy { findViewById(R.id.containerList) }
-    private val layoutDetail:FrameLayout? by lazy { findViewById(R.id.containerDetail) }
 
+    private lateinit var binding: ActivityMainBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(ActivityMainBinding.inflate(layoutInflater).also { binding = it }.root)
 
-        //Load ListFragment on its container. (layoutList)
+        //Load ListFragment on its container. (binding.containerList)
         loadRecyclerView()
 
-        //In the case we were in landscape we load also the DetailFragment in its container. (layoutDetail)
+        //In the case we were in landscape we load also the DetailFragment in its container. (binding.containerDetail)
         if (isLandScape()){
             //We load first SuperHero
             loadDetailFragment(true, Superhero.getFirstID())
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), OnItemClick  {
 
     private fun loadRecyclerView() {
         supportFragmentManager.beginTransaction()
-            .replace(layoutList.id, ListFragment.newInstance(1))
+            .replace(binding.containerList.id, ListFragment.newInstance(1))
             .addToBackStack(null)
             .commit()
     }
@@ -38,13 +38,13 @@ class MainActivity : AppCompatActivity(), OnItemClick  {
 
     /*Work around that let  us to know if we're un landscape mode*/
     private fun isLandScape():Boolean {
-        return layoutDetail != null
+        return binding.containerDetail != null
     }
 
 
     private fun loadDetailFragment(twoPane:Boolean, heroID:Int){
-        //If layoutDetail is null (we're in portrait mode) then we load DetailFragment in layoutList
-        val id = layoutDetail?.id?:layoutList.id
+        //If binding.containerDetail is null (we're in portrait mode) then we load DetailFragment in binding.containerList
+        val id = binding.containerDetail?.id?:binding.containerList.id
 
         supportFragmentManager.beginTransaction()
             .replace(id, DetailFragment.newInstance(heroID))
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), OnItemClick  {
     override fun onItemClick(hero: Superhero) {
         //We don't nee to use snackbar, which is such as an enhanced Toast where you can implement actions.
         //But I wanted to introduce it to you
-        Snackbar.make(layoutList, "You have clicked on ${hero.superhero}", Snackbar.LENGTH_LONG)
+        Snackbar.make(binding.containerList, "You have clicked on ${hero.superhero}", Snackbar.LENGTH_LONG)
             .setAction("Open"){
 
                 loadDetailFragment(isLandScape(), hero.id)

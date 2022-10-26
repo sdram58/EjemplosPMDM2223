@@ -1,4 +1,4 @@
-package com.cartatar.splashscreen
+package com.catata.splashscreen
 
 import org.junit.Test
 

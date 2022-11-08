@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TimersWithCoroutines</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="reset">Reset</string>
+    <string name="pause">Pause</string>
+    <string name="reset_all">Reset All</string>
+    <string name="resume">Resume</string>
+</resources>

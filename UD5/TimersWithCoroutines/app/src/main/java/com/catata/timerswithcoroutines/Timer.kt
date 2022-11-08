@@ -48,9 +48,9 @@ class Timer(val callback: (Int)->Unit) {
 
     private suspend fun runTimer()= withContext(Dispatchers.Default){
         while(status == Status.RUNNING){
-            delay(1000)
             timer++
             sendData()
+            delay(1000)
         }
     }
 

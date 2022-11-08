@@ -1,6 +1,8 @@
 package com.catata.loginbackground
 
 import android.content.DialogInterface
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -47,20 +49,27 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun showMessage(text:String){
+    private fun showMessage(text:String){
         val builder = AlertDialog.Builder(this)
 
         val view = layoutInflater.inflate(R.layout.dialog,null)
-        builder.setView(view)
+
+        var alertDialog: AlertDialog? = null
 
         view.findViewById<TextView>(R.id.tvTitle).text = "Login Result"
         view.findViewById<TextView>(R.id.tvText).text = text
-        /*view.findViewById<Button>(R.id.btnLogin).setOnClickListener {
+        view.findViewById<Button>(R.id.btnOk).setOnClickListener {
             Toast.makeText(this, text,Toast.LENGTH_SHORT).show()
-        }*/
+            alertDialog?.cancel()
+        }
+
+        builder.setView(view)
 
 
-        builder.create().show()
+        alertDialog = builder.create()
+        alertDialog.setCanceledOnTouchOutside(false)
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
 
 
         /*alertDialog.setTitle("Login result")

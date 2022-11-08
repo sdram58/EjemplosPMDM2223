@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LoginBackground</string>
+    <string name="login">Login</string>
+    <string name="invalid_login">Invalid user or password</string>
+</resources>

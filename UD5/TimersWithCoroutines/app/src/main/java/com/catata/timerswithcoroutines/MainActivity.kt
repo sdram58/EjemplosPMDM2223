@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
 
         setButtonsListeners()
 
-
-
     }
 
     private fun setButtonsListeners() {
@@ -74,12 +72,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initTimers() {
-        timer1 = Timer(){
-                binding.tvTimer1.text = it.toString()
+        timer1 = Timer(){ counter1 ->
+                binding.tvTimer1.text = counter1.toString()
         }
 
-        timer2 = Timer(){
-            binding.tvTimer2.text = it.toString()
+        timer2 = Timer(){ counter2 ->
+            binding.tvTimer2.text = counter2.toString()
         }
     }
 }

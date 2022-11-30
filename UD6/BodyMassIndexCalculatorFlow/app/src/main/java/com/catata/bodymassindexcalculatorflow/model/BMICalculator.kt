@@ -1,4 +1,4 @@
-package com.catata.bodymassindexcalculatorflow
+package com.catata.bodymassindexcalculatorflow.model
 
 
 import java.lang.Exception
@@ -14,16 +14,13 @@ typealias OnLoading = (loading:Boolean)->Unit
 
 class BMICalculator{
 
-    data class Request(
-        val weight:Double,
-        val height:Double
-    )
+
 
     private fun calcMBI(weight: Double, height: Double):Double = weight/ (height/100).pow(2)
 
     /***************WITH FUNCTIONS***********************************/
     //Long calculating function
-    fun calculateWithFunctions(request:Request,onSuccess: OnSuccess, onError: onError, onLoading: OnLoading, onWrongWeight: OnWrongWeight?, onWrongHeight: OnWrongHeight?){
+    fun calculateWithFunctions(request:Request,onSuccess: OnSuccess, onError: onError?=null, onLoading: OnLoading, onWrongWeight: OnWrongWeight?=null, onWrongHeight: OnWrongHeight?=null){
 
         onLoading(true)
         val minHeight= 50
@@ -54,7 +51,7 @@ class BMICalculator{
                 val bmi = calcMBI(request.weight, request.height)
                 onSuccess(bmi)
             }catch (e:Exception){
-                onError(e.toString())
+                onError?.invoke(e.toString())
             }
         }
         onLoading(false)

@@ -1,4 +1,4 @@
-package com.catata.bodymassindexcalculatorflow
+package com.catata.bodymassindexcalculatorflow.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

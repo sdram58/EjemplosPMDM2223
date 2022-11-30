@@ -1,20 +1,20 @@
-package com.catata.bodymassindexcalculatorflow
+package com.catata.bodymassindexcalculatorflow.ui.main.viewmodel
 
-
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.catata.bodymassindexcalculatorflow.model.BMICalculator
+import com.catata.bodymassindexcalculatorflow.model.Request
+import com.catata.bodymassindexcalculatorflow.ui.main.*
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class BMICalculatorViewModel: ViewModel() {
 
     private val bmiCalculator: BMICalculator = BMICalculator()
 
 
-    val bmi : MutableLiveData<Double> = MutableLiveData()
-    val heightError : MutableLiveData<String> = MutableLiveData()
-    val weightError : MutableLiveData<String> = MutableLiveData()
-    val error : MutableLiveData<String> = MutableLiveData()
-    val loading : MutableLiveData<Boolean> = MutableLiveData()
+    private val _state:MutableStateFlow<UIMainState> = MutableStateFlow(Loading(false))
+    val state = _state.asStateFlow()
 
 
 
@@ -32,22 +32,21 @@ class BMICalculatorViewModel: ViewModel() {
         //Using coroutine
         CoroutineScope(Dispatchers.IO).launch {
             //Using callbacks
-            bmiCalculator.calculateWithFunctions(BMICalculator.Request(weight, height),
+            bmiCalculator.calculateWithFunctions(
+                Request(weight, height),
                 onSuccess = { mBMI->
-                    bmi.postValue(mBMI)
-                    heightError.postValue("")
-                    weightError.postValue("")
-                    error.postValue("")
-                },
-                onError = {
-                        e -> error.postValue(e)
+                    _state.value = ResultOk(mBMI)
                 },
                 onLoading = {
-                        isLoading -> loading.postValue(isLoading)
+                    _state.value = Loading(it)
                 },
                 onWrongWeight = {
-                        e -> weightError.postValue(e)
-                }, null)
+                    _state.value = WeightError(it)
+                },
+                onWrongHeight = {
+                    _state.value = HeightError(it)
+                }
+            )
 
         }
     }
@@ -58,29 +57,26 @@ class BMICalculatorViewModel: ViewModel() {
 
         CoroutineScope(Dispatchers.IO).launch {
             bmiCalculator.calculateWithCallback(
-                BMICalculator.Request(weight,height),
+                Request(weight,height),
                 object: BMICalculator.BMIResponse {
                     override fun onSuccess(result: Double) {
-                        bmi.postValue(result)
-                        error.postValue("")
-                        heightError.postValue("")
-                        weightError.postValue("")
+                        _state.value = ResultOk(bmi = result)
                     }
 
                     override fun onHeightError(error: String) {
-                        heightError.postValue(error)
+                        _state.value = HeightError(error)
                     }
 
                     override fun onWeightError(error: String) {
-                        weightError.postValue(error)
+                        _state.value = WeightError(error)
                     }
 
                     override fun onError(mError: String) {
-                        error.postValue(mError)
+
                     }
 
                     override fun onLoading(mLoading: Boolean) {
-                        loading.postValue(mLoading)
+
                     }
 
                 })
@@ -90,31 +86,30 @@ class BMICalculatorViewModel: ViewModel() {
     }
 
 
-    /******************WITH SEALED***************************************/
+    /******************WITH SEALED CLASS***************************************/
 
     private fun calculateBMISealed(weight: Double, height: Double) {
 
         //viewModelScope.launch {
         CoroutineScope(Dispatchers.IO).launch {
-            loading.postValue(true)
-            bmiCalculator.calculateWithSealed(BMICalculator.Request(weight, height),null).also{ res ->
+            _state.value = Loading(true)
+            bmiCalculator.calculateWithSealed(Request(weight, height),null).also{ res ->
                 when(res){
                     is BMICalculator.Response.OKResult -> {
-                        bmi.postValue(res.result)
-                        heightError.postValue("")
-                        weightError.postValue("")
-                        error.postValue("") }
+                        _state.value = ResultOk(res.result)
+                    }
                     is BMICalculator.Response.WrongHeight ->{
-                        heightError.postValue(res.error)
+                            _state.value = HeightError(res.error)
                     }
                     is BMICalculator.Response.WrongWeight ->{
-                        weightError.postValue(res.error)
+                            _state.value = WeightError(res.error)
+                        }
                     }
                 }
 
             }
-            loading.postValue(false)
-        }
+
+
     }
 
 

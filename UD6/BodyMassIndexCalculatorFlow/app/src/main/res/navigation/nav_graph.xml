@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/BMIFragment"
-        android:name="com.catata.bodymassindexcalculatorflow.BMIFragment"
+        android:name="com.catata.bodymassindexcalculatorflow.ui.main.BMIFragment"
         android:label="fragment_b_m_i"
         tools:layout="@layout/fragment_b_m_i" />
 </navigation>

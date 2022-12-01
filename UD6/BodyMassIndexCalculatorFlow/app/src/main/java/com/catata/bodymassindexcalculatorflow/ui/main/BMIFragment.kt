@@ -12,11 +12,17 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.catata.bodymassindexcalculatorflow.databinding.FragmentBMIBinding
 import com.catata.bodymassindexcalculatorflow.ui.main.viewmodel.BMICalculatorViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 
 
 class BMIFragment : Fragment() {
     private lateinit var binding: FragmentBMIBinding
+
+    private var job: Job? = null
 
     /*
     * you can also get the reference to the viewModel through a
@@ -71,7 +77,11 @@ class BMIFragment : Fragment() {
 
         }
 
-        lifecycleScope.launchWhenCreated {
+        /*lifecycleScope.launchWhenCreated {
+            updateUI()
+        }*/
+
+        job = CoroutineScope(Dispatchers.Main).launch {
             updateUI()
         }
 
@@ -103,8 +113,10 @@ class BMIFragment : Fragment() {
                     binding.etWeight.error = state.error
                     binding.etHeight.error = null
                 }
-                is Loading ->{
-                    //We don't need to do anything here
+                else ->{ //Loading
+                    binding.tvBMI.text = ""
+                    binding.etWeight.error = null
+                    binding.etHeight.error = null
                 }
             }
         }
@@ -114,6 +126,15 @@ class BMIFragment : Fragment() {
         (activity?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).apply {
             hideSoftInputFromWindow(view.windowToken, 0)
         }
+    }
+
+    override fun onDetach() {
+        job?.let {
+            if(it.isActive) it.cancel()
+        }
+
+        job = null
+        super.onDetach()
     }
 
 

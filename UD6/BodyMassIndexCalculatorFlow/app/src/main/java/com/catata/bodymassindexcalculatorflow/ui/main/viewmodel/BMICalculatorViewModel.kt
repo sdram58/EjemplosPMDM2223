@@ -13,7 +13,7 @@ class BMICalculatorViewModel: ViewModel() {
     private val bmiCalculator: BMICalculator = BMICalculator()
 
 
-    private val _state:MutableStateFlow<UIMainState> = MutableStateFlow(Loading(false))
+    private val _state:MutableStateFlow<UIMainState> = MutableStateFlow(Loaded)
     val state = _state.asStateFlow()
 
 
@@ -22,8 +22,8 @@ class BMICalculatorViewModel: ViewModel() {
     fun calculateBMI(weight:Double,height:Double){
 
         //calculateBMIFunctions(weight,height)
-        calculateBMICallBack(weight,height)
-        //calculateBMISealed(weight,height)
+        //calculateBMICallBack(weight,height)
+        calculateBMISealed(weight,height)
 
     }
 
@@ -32,13 +32,11 @@ class BMICalculatorViewModel: ViewModel() {
         //Using coroutine
         CoroutineScope(Dispatchers.IO).launch {
             //Using callbacks
+            _state.value = Loading
             bmiCalculator.calculateWithFunctions(
                 Request(weight, height),
                 onSuccess = { mBMI->
                     _state.value = ResultOk(mBMI)
-                },
-                onLoading = {
-                    _state.value = Loading(it)
                 },
                 onWrongWeight = {
                     _state.value = WeightError(it)
@@ -56,6 +54,7 @@ class BMICalculatorViewModel: ViewModel() {
 
 
         CoroutineScope(Dispatchers.IO).launch {
+            _state.value = Loading
             bmiCalculator.calculateWithCallback(
                 Request(weight,height),
                 object: BMICalculator.BMIResponse {
@@ -75,10 +74,6 @@ class BMICalculatorViewModel: ViewModel() {
 
                     }
 
-                    override fun onLoading(mLoading: Boolean) {
-
-                    }
-
                 })
 
 
@@ -92,22 +87,22 @@ class BMICalculatorViewModel: ViewModel() {
 
         //viewModelScope.launch {
         CoroutineScope(Dispatchers.IO).launch {
-            _state.value = Loading(true)
+            _state.value = Loading
             bmiCalculator.calculateWithSealed(Request(weight, height),null).also{ res ->
                 when(res){
                     is BMICalculator.Response.OKResult -> {
                         _state.value = ResultOk(res.result)
                     }
                     is BMICalculator.Response.WrongHeight ->{
-                            _state.value = HeightError(res.error)
+                        _state.value = HeightError(res.error)
                     }
                     is BMICalculator.Response.WrongWeight ->{
-                            _state.value = WeightError(res.error)
-                        }
+                        _state.value = WeightError(res.error)
                     }
                 }
-
             }
+
+        }
 
 
     }

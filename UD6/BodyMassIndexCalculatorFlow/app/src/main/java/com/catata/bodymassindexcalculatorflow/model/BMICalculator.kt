@@ -20,9 +20,9 @@ class BMICalculator{
 
     /***************WITH FUNCTIONS***********************************/
     //Long calculating function
-    fun calculateWithFunctions(request:Request,onSuccess: OnSuccess, onError: onError?=null, onLoading: OnLoading, onWrongWeight: OnWrongWeight?=null, onWrongHeight: OnWrongHeight?=null){
+    fun calculateWithFunctions(request:Request,onSuccess: OnSuccess, onError: onError?=null, onLoading: OnLoading?=null, onWrongWeight: OnWrongWeight?=null, onWrongHeight: OnWrongHeight?=null){
 
-        onLoading(true)
+        onLoading?.invoke(true)
         val minHeight= 50
         val minWeight = 10
 
@@ -54,7 +54,7 @@ class BMICalculator{
                 onError?.invoke(e.toString())
             }
         }
-        onLoading(false)
+        onLoading?.invoke(false)
 
 
 
@@ -103,11 +103,9 @@ class BMICalculator{
         fun onHeightError(error:String)
         fun onWeightError(error:String)
         fun onError(error:String)
-        fun onLoading(loading: Boolean)
     }
 
     fun calculateWithCallback(request: Request, bmiResponse: BMIResponse){
-        bmiResponse.onLoading(true)
         val minHeight= 50
         val minWeight = 10
 
@@ -135,7 +133,6 @@ class BMICalculator{
                 bmiResponse.onError(e.toString())
             }
         }
-        bmiResponse.onLoading(false)
     }
 
 }

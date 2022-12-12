@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-mergeDebugResources-44:\\layout\\fragment_bottom1.xml",
+        "source": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-main-47:\\layout\\fragment_bottom1.xml"
+    },
+    {
+        "merged": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-mergeDebugResources-44:\\layout\\fragment_drawer3.xml",
+        "source": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-main-47:\\layout\\fragment_drawer3.xml"
+    },
+    {
+        "merged": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-mergeDebugResources-44:\\layout\\fragment_bottom3.xml",
+        "source": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-main-47:\\layout\\fragment_bottom3.xml"
+    },
+    {
+        "merged": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-mergeDebugResources-44:\\layout\\fragment_drawer2.xml",
+        "source": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-main-47:\\layout\\fragment_drawer2.xml"
+    },
+    {
+        "merged": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-mergeDebugResources-44:\\layout\\fragment_bottom2.xml",
+        "source": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-main-47:\\layout\\fragment_bottom2.xml"
+    },
+    {
+        "merged": "com.catata.twonavigationsexample.app-mergeDebugResources-44:/layout/activity_main2.xml",
+        "source": "com.catata.twonavigationsexample.app-main-47:/layout/activity_main2.xml"
+    },
+    {
+        "merged": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-mergeDebugResources-44:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-main-47:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-mergeDebugResources-44:\\layout\\activity_main2.xml",
+        "source": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-main-47:\\layout\\activity_main2.xml"
+    },
+    {
+        "merged": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-mergeDebugResources-44:\\layout\\fragment_drawer1.xml",
+        "source": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-main-47:\\layout\\fragment_drawer1.xml"
+    },
+    {
+        "merged": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-mergeDebugResources-44:\\layout\\drawer_header.xml",
+        "source": "C:\\Users\\carlos\\.gradle\\daemon\\7.4\\com.catata.twonavigationsexample.app-main-47:\\layout\\drawer_header.xml"
+    }
+]

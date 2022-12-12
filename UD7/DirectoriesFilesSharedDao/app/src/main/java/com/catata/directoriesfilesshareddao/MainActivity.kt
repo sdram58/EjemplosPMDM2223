@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.catata.directoriesfilesshareddao.dao.DaoFiles
 import com.catata.directoriesfilesshareddao.dao.DaoShared
@@ -20,13 +21,13 @@ import java.io.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModelDao:DaoViewModel
+    private val viewModelDao:DaoViewModel by viewModels()
+
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(ActivityMainBinding.inflate(layoutInflater).also { binding = it }.root)
 
-        viewModelDao = ViewModelProvider(this)[DaoViewModel::class.java]
 
         binding.btnLoad.setOnClickListener {
             viewModelDao.load()

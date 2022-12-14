@@ -11,7 +11,6 @@ typealias onError = (error:String)->Unit
 typealias OnSuccess = (bmi:Double)->Unit
 typealias OnLoading = (loading:Boolean)->Unit
 
-
 class BMICalculator{
 
     data class Request(

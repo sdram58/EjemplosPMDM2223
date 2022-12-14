@@ -24,7 +24,6 @@ class BMICalculator{
     /***************WITH FUNCTIONS***********************************/
     //Long calculating function
     fun calculateWithFunctions(request:Request,onSuccess: OnSuccess, onError: onError, onLoading: OnLoading, onWrongWeight: OnWrongWeight?, onWrongHeight: OnWrongHeight?){
-
         onLoading(true)
         val minHeight= 50
         val minWeight = 10

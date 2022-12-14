@@ -17,7 +17,6 @@ class BMICalculatorViewModel: ViewModel() {
     val loading : MutableLiveData<Boolean> = MutableLiveData()
 
 
-
     //Choose which of the three methods you want to use
     fun calculateBMI(weight:Double,height:Double){
 
@@ -42,8 +41,8 @@ class BMICalculatorViewModel: ViewModel() {
                 onError = {
                         e -> error.postValue(e)
                 },
-                onLoading = {
-                        isLoading -> loading.postValue(isLoading)
+                onLoading = { isLoading ->
+                    loading.postValue(isLoading)
                 },
                 onWrongWeight = {
                         e -> weightError.postValue(e)

@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "RoomExample"
+rootProject.name = "RoomExampleWithLD"
 include ':app'

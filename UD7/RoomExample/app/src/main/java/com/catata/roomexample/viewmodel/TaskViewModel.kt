@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TaskViewModel(application: Application): AndroidViewModel(application) {
-    val context = application
+    private val context = application
 
     var myDao: MyDao = TasksDatabase.getInstance(context)
 

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.catata.roomexample'
+    namespace 'com.catata.roomexamplelivedata'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.catata.roomexample"
+        applicationId "com.catata.roomexamplelivedata"
         minSdk 27
         targetSdk 32
         versionCode 1

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
-    tools:context="com.catata.roomexample.framework.ui.main.MainActivity">
+    tools:context="com.catata.roomexamplelivedata.framework.ui.main.MainActivity">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTask"
         android:layout_width="match_parent"

@@ -28,9 +28,6 @@ class MainActivity : AppCompatActivity() {
         binding.btnChangeImage.setOnClickListener {
             changeImage ()
         }
-
-
-
     }
 
 

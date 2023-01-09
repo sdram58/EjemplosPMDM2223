@@ -9,14 +9,11 @@ import com.catata.retrofit2example.adapter.DogAdapter
 import com.catata.retrofit2example.databinding.ActivityMainBinding
 import com.catata.retrofit2example.model.DogsResponse
 import com.catata.retrofit2example.provider.APIService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.catata.retrofit2example.provider.DogProvider
+import kotlinx.coroutines.*
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-const val BASE_URL = "https://dog.ceo/api/breed/"
+
+
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private lateinit var binding: ActivityMainBinding
 
@@ -40,32 +37,21 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         binding.rvDogs.adapter = adapter
     }
 
-    //Creates an instance of Retrofit
-    private fun getRetrofit (): Retrofit {
-        return Retrofit.Builder ()
-            .baseUrl (BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
+
 
     private fun searchByName(query:String){
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val call = getRetrofit().create(APIService::class.java).getDogsByBreeds("$query/images")
+        MainScope().launch {
+            val dogList = DogProvider.getDogsByBreed(query)
 
-            updateData(call)
-        }
-    }
+            if(dogList.isNotEmpty()){
+                dogImages.clear()
+                dogImages.addAll(dogList)
+                adapter.notifyDataSetChanged()
+            }else{
+                showError()
+            }
 
-    private suspend fun updateData(call: Response<DogsResponse>)= withContext(Dispatchers.Main){
-        if(call.isSuccessful){
-            val puppies = call.body()
-            val images = puppies?.images ?: emptyList()
-            dogImages.clear()
-            dogImages.addAll(images)
-            adapter.notifyDataSetChanged()
-        }else{
-            showError()
         }
     }
 

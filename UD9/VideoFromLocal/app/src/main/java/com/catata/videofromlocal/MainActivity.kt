@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
         with(binding.vvVideo){
 
 
-            mediaController.setAnchorView(binding.vvVideo)
+            mediaController.setAnchorView(this)
+
             setMediaController(mediaController)
 
             setVideoPath(path)

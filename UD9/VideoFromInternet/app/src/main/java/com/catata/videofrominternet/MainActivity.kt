@@ -14,7 +14,7 @@ import android.media.MediaPlayer.OnPreparedListener
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
-    val urlVideo = "https://sdram58.github.io/apuntesPMDM/unidades/UD8/assets/bola_drac.mp4"
+    val urlVideo = "https://sdram58.github.io/apuntesPMDM/unidades2223/UD9/assets/bola_drac.mp4"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

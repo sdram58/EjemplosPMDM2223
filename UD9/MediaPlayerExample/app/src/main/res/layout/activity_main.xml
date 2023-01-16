@@ -26,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_margin="5dp"
             android:text="Play"
             android:onClick="music"/>
 
@@ -34,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_margin="5dp"
             android:text="Pause"
             android:onClick="music"/>
 
@@ -42,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_margin="5dp"
             android:text="Stop"
             android:onClick="music"/>
     </LinearLayout>

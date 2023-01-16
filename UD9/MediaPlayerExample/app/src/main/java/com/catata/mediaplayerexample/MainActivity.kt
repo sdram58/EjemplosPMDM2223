@@ -25,20 +25,20 @@ class MainActivity : AppCompatActivity() {
                 }
                 // Then, register OnCompletionListener that calls a user supplied callback method onCompletion() when
                 // looping mode was set to false to indicate playback is completed.
-                mediaPlayer!!.setOnCompletionListener { // Here, call a method to release the MediaPlayer object and to set it to null.
+                mediaPlayer?.setOnCompletionListener { // Here, call a method to release the MediaPlayer object and to set it to null.
                     stopMusic()
                 }
                 // Next, call start() method on mediaPlayer to start playing the music.
 
-                mediaPlayer!!.start()
+                mediaPlayer?.start()
             }
             R.id.btnPause -> if (mediaPlayer != null) {
                 // Here, call pause() method on mediaPlayer to pause the music.
-                mediaPlayer!!.pause()
+                mediaPlayer?.pause()
             }
             R.id.btnStop -> if (mediaPlayer != null) {
                 // Here, call stop() method on mediaPlayer to stop the music.
-                mediaPlayer!!.stop()
+                mediaPlayer?.stop()
                 // Call stopMusic() method
                 stopMusic()
             }
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun stopMusic() {
-        mediaPlayer!!.release()
+        mediaPlayer?.release()
         mediaPlayer = null
     }
 

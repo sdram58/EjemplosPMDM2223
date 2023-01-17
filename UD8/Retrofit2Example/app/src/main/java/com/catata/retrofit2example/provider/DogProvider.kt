@@ -1,6 +1,7 @@
 package com.catata.retrofit2example.provider
 
 
+import com.catata.retrofit2example.model.DogsResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,7 +25,7 @@ object DogProvider {
         val call = getRetrofit().create(APIService::class.java).getDogsByBreeds("$breed/images")
 
         if(call.isSuccessful){
-            val puppies = call.body()
+            val puppies:DogsResponse? = call.body()
             val images = puppies?.images ?: emptyList()
 
             dogs = dogs + images
@@ -32,4 +33,8 @@ object DogProvider {
 
         dogs
     }
+
 }
+
+
+

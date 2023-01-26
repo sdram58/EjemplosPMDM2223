@@ -2,6 +2,7 @@ package com.example.mapsexample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -10,8 +11,10 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.mapsexample.databinding.ActivityMapsBinding
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.Marker
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
@@ -26,6 +29,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+
     }
 
     /**
@@ -42,7 +47,26 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+
+        val marker = mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney").snippet("Inhabitants 18000"))
+        marker?.let{
+            it.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)) // Blue color
+            //it.icon(BitmapDescriptorFactory.fromResource(R.mipmap.busmarker)) // Image from resource
+
+        }
+
+        mMap.setOnMarkerClickListener {
+            Toast.makeText(this, "Click on Marker", Toast.LENGTH_SHORT) .show()
+            return@setOnMarkerClickListener true
+        }
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
+        mMap.setOnInfoWindowClickListener(this)
+
+    }
+
+    override fun onInfoWindowClick(marker: Marker) {
+        //Toast.makeText(this, "Marker pressed on: \n $ {marker?.Tag}($ {marker?.Position?.Latitude}" +
+        //        "$ {marker? .position? .longitude})", Toast.LENGTH_SHORT).show();
     }
 }

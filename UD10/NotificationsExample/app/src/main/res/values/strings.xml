@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NotificationsExample</string>
+    <string name="send_notification">Send Notification</string>
+    <string name="CHANNEL_ID">"MyAppNotifications"</string>
+    <string name="CHANNEL_NAME">My Notifications</string>
+    <string name="CHANNEL_DESCRIPTION">This channel is for this example App</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>

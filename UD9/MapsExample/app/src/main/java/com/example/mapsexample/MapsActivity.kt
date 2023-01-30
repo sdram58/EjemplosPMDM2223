@@ -56,6 +56,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
             locationRequestBuilder.setPriority(PRIORITY_BALANCED_POWER_ACCURACY)
             locationRequestBuilder.setMinUpdateDistanceMeters(0f)
             locationRequest = locationRequestBuilder.build()
+        }else{
+            Toast.makeText(this, "Old device", Toast.LENGTH_SHORT).show()
+            locationRequest = LocationRequest()
         }
 
         locationCallback = object: LocationCallback(){
